@@ -1,6 +1,7 @@
 import { Monitor, Cloud, Globe, GraduationCap, Shield, Cpu, Network, Smartphone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Link } from "react-router-dom";
 
 const services = [
   {
@@ -62,6 +63,13 @@ const services = [
 ];
 
 export const ServicesSection = () => {
+  const scrollToContact = () => {
+    const element = document.getElementById('contact');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="py-24 bg-gradient-card">
       <div className="container mx-auto px-4">
@@ -107,9 +115,21 @@ export const ServicesSection = () => {
                   </ul>
                   
                   <div className="pt-4">
-                    <Button variant="outline" className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
-                      Learn More
-                    </Button>
+                    {index === 0 ? (
+                      <Link to="/services/computer-sales">
+                        <Button variant="outline" className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
+                          Learn More
+                        </Button>
+                      </Link>
+                    ) : (
+                      <Button 
+                        variant="outline" 
+                        className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300"
+                        onClick={scrollToContact}
+                      >
+                        Learn More
+                      </Button>
+                    )}
                   </div>
                 </CardContent>
               </Card>
@@ -118,7 +138,7 @@ export const ServicesSection = () => {
         </div>
 
         <div className="text-center mt-16">
-          <Button variant="cta" size="lg">
+          <Button variant="cta" size="lg" onClick={scrollToContact}>
             Request Free Consultation
           </Button>
         </div>

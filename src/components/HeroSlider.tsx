@@ -50,6 +50,13 @@ const slides = [
 export const HeroSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
@@ -71,7 +78,7 @@ export const HeroSlider = () => {
   };
 
   return (
-    <section className="relative h-screen overflow-hidden bg-gradient-hero">
+    <section className="relative h-screen overflow-hidden bg-gradient-hero pt-16">
       {/* Background Images */}
       {slides.map((slide, index) => (
         <div
@@ -107,12 +114,22 @@ export const HeroSlider = () => {
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                <Button variant="hero" size="lg" className="group">
+                <Button 
+                  variant="hero" 
+                  size="lg" 
+                  className="group"
+                  onClick={() => scrollToSection('services')}
+                >
                   {slides[currentSlide].cta}
                   <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                 </Button>
                 
-                <Button variant="outline" size="lg" className="border-white/30 text-white hover:bg-white/10">
+                <Button 
+                  variant="outline" 
+                  size="lg" 
+                  className="border-white/30 text-white hover:bg-white/10"
+                  onClick={() => scrollToSection('contact')}
+                >
                   Free Consultation
                 </Button>
               </div>

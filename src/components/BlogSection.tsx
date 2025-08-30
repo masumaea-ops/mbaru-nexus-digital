@@ -1,6 +1,7 @@
 import { Calendar, ArrowRight, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Link } from "react-router-dom";
 
 const blogPosts = [
   {
@@ -98,12 +99,23 @@ export const BlogSection = () => {
                   <span>{post.date}</span>
                 </div>
                 
-                <Button variant="ghost" className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300 p-0 h-auto">
-                  <span className="flex items-center justify-center py-2 px-4 w-full">
-                    Read More
-                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </span>
-                </Button>
+                {index === 0 ? (
+                  <Link to="/blog/cloud-trends-kenya-2025">
+                    <Button variant="ghost" className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300 p-0 h-auto">
+                      <span className="flex items-center justify-center py-2 px-4 w-full">
+                        Read More
+                        <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                      </span>
+                    </Button>
+                  </Link>
+                ) : (
+                  <Button variant="ghost" className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300 p-0 h-auto">
+                    <span className="flex items-center justify-center py-2 px-4 w-full">
+                      Read More
+                      <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    </span>
+                  </Button>
+                )}
               </CardContent>
             </Card>
           ))}

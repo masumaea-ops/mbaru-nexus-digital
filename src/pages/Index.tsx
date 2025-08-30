@@ -1,3 +1,4 @@
+import { Navigation } from "@/components/Navigation";
 import { HeroSlider } from "@/components/HeroSlider";
 import { ServicesSection } from "@/components/ServicesSection";
 import { AboutSection } from "@/components/AboutSection";
@@ -8,20 +9,33 @@ import { Footer } from "@/components/Footer";
 const Index = () => {
   return (
     <div className="min-h-screen">
+      {/* Navigation */}
+      <Navigation />
+      
       {/* Hero Section with Interactive Slider */}
-      <HeroSlider />
+      <section id="hero">
+        <HeroSlider />
+      </section>
       
       {/* Services Section */}
-      <ServicesSection />
+      <section id="services">
+        <ServicesSection />
+      </section>
       
       {/* About Section */}
-      <AboutSection />
+      <section id="about">
+        <AboutSection />
+      </section>
       
       {/* Blog Section */}
-      <BlogSection />
+      <section id="blog">
+        <BlogSection />
+      </section>
       
       {/* Contact Section */}
-      <ContactSection />
+      <section id="contact">
+        <ContactSection />
+      </section>
       
       {/* Footer */}
       <Footer />
