@@ -99,23 +99,14 @@ export const BlogSection = () => {
                   <span>{post.date}</span>
                 </div>
                 
-                {index === 0 ? (
-                  <Link to="/blog/cloud-trends-kenya-2025">
-                    <Button variant="ghost" className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300 p-0 h-auto">
-                      <span className="flex items-center justify-center py-2 px-4 w-full">
-                        Read More
-                        <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                      </span>
-                    </Button>
-                  </Link>
-                ) : (
+                <Link to={post.link}>
                   <Button variant="ghost" className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300 p-0 h-auto">
                     <span className="flex items-center justify-center py-2 px-4 w-full">
                       Read More
                       <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </span>
                   </Button>
-                )}
+                </Link>
               </CardContent>
             </Card>
           ))}
