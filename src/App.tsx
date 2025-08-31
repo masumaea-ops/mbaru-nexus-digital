@@ -10,6 +10,10 @@ import CloudTrendsKenya from "./pages/blog/CloudTrendsKenya";
 import CybersecurityBusinessProtection from "./pages/blog/CybersecurityBusinessProtection";
 import EcommerceSuccessNairobi from "./pages/blog/EcommerceSuccessNairobi";
 import IctTrainingDigitalSkills from "./pages/blog/IctTrainingDigitalSkills";
+import FAQ from "./pages/FAQ";
+import Portfolio from "./pages/Portfolio";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import Terms from "./pages/Terms";
 
 const queryClient = new QueryClient();
 
@@ -25,7 +29,10 @@ const App = () => (
           <Route path="/blog/cloud-trends-kenya-2025" element={<CloudTrendsKenya />} />
           <Route path="/blog/cybersecurity-business-protection" element={<CybersecurityBusinessProtection />} />
           <Route path="/blog/ecommerce-success-nairobi" element={<EcommerceSuccessNairobi />} />
-          <Route path="/blog/ict-training-digital-skills-kenya" element={<IctTrainingDigitalSkills />} />
+          <Route path="/faq" element={<FAQ />} />
+          <Route path="/portfolio" element={<Portfolio />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms" element={<Terms />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -1,89 +1,70 @@
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 export const Navigation = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
 
   const scrollToSection = (sectionId: string) => {
+    if (window.location.pathname !== '/') {
+      window.location.href = `/#${sectionId}`;
+      return;
+    }
+    
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
-      setIsMenuOpen(false);
     }
+    setIsOpen(false);
   };
 
-  const navItems = [
-    { label: "Home", sectionId: "hero" },
-    { label: "Services", sectionId: "services" },
-    { label: "About", sectionId: "about" },
-    { label: "Blog", sectionId: "blog" },
-    { label: "Contact", sectionId: "contact" }
-  ];
-
   return (
-    <nav className="fixed top-0 w-full bg-background/95 backdrop-blur-sm border-b border-border z-50">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">MT</span>
+          <Link to="/" className="flex items-center space-x-3">
+            <div className="h-8 w-8 bg-primary rounded-lg flex items-center justify-center">
+              <span className="text-primary-foreground font-bold text-sm">MT</span>
             </div>
-            <span className="text-xl font-bold text-foreground">Mbaru Technologies</span>
+            <span className="font-display font-bold text-xl text-foreground">
+              Mbaru Technologies
+            </span>
+          </Link>
+
+          <div className="hidden lg:flex items-center space-x-8">
+            <button onClick={() => scrollToSection('hero')} className="text-muted-foreground hover:text-foreground transition-colors">Home</button>
+            <button onClick={() => scrollToSection('services')} className="text-muted-foreground hover:text-foreground transition-colors">Services</button>
+            <button onClick={() => scrollToSection('about')} className="text-muted-foreground hover:text-foreground transition-colors">About</button>
+            <Link to="/portfolio" className="text-muted-foreground hover:text-foreground transition-colors">Portfolio</Link>
+            <button onClick={() => scrollToSection('blog')} className="text-muted-foreground hover:text-foreground transition-colors">Blog</button>
+            <Link to="/faq" className="text-muted-foreground hover:text-foreground transition-colors">FAQ</Link>
+            <button onClick={() => scrollToSection('contact')} className="text-muted-foreground hover:text-foreground transition-colors">Contact</button>
           </div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => (
-              <button
-                key={item.sectionId}
-                onClick={() => scrollToSection(item.sectionId)}
-                className="text-muted-foreground hover:text-foreground transition-colors duration-300 font-medium"
-              >
-                {item.label}
-              </button>
-            ))}
-            <Button 
-              variant="cta" 
-              size="sm"
-              onClick={() => scrollToSection("contact")}
-            >
-              Get Quote
+          <div className="hidden lg:block">
+            <Button variant="cta" onClick={() => scrollToSection('contact')}>Free Consultation</Button>
+          </div>
+
+          <div className="lg:hidden">
+            <Button variant="ghost" size="sm" onClick={() => setIsOpen(!isOpen)}>
+              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </Button>
           </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden p-2"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
         </div>
 
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="md:hidden py-4 border-t border-border">
-            <div className="flex flex-col space-y-4">
-              {navItems.map((item) => (
-                <button
-                  key={item.sectionId}
-                  onClick={() => scrollToSection(item.sectionId)}
-                  className="text-left text-muted-foreground hover:text-foreground transition-colors duration-300 font-medium py-2"
-                >
-                  {item.label}
-                </button>
-              ))}
-              <Button 
-                variant="cta" 
-                size="sm" 
-                className="w-fit"
-                onClick={() => scrollToSection("contact")}
-              >
-                Get Quote
-              </Button>
+        {isOpen && (
+          <div className="lg:hidden py-4 border-t">
+            <div className="space-y-4">
+              <button onClick={() => scrollToSection('hero')} className="block text-muted-foreground hover:text-foreground transition-colors">Home</button>
+              <button onClick={() => scrollToSection('services')} className="block text-muted-foreground hover:text-foreground transition-colors">Services</button>
+              <button onClick={() => scrollToSection('about')} className="block text-muted-foreground hover:text-foreground transition-colors">About</button>
+              <Link to="/portfolio" className="block text-muted-foreground hover:text-foreground transition-colors" onClick={() => setIsOpen(false)}>Portfolio</Link>
+              <button onClick={() => scrollToSection('blog')} className="block text-muted-foreground hover:text-foreground transition-colors">Blog</button>
+              <Link to="/faq" className="block text-muted-foreground hover:text-foreground transition-colors" onClick={() => setIsOpen(false)}>FAQ</Link>
+              <button onClick={() => scrollToSection('contact')} className="block text-muted-foreground hover:text-foreground transition-colors">Contact</button>
+              <Button variant="cta" className="w-full mt-4" onClick={() => { scrollToSection('contact'); setIsOpen(false); }}>Free Consultation</Button>
             </div>
           </div>
         )}
