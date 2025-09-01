@@ -28,8 +28,15 @@ export const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="space-y-6">
+            <div className="flex items-center space-x-3 mb-4">
+              <img 
+                src="/lovable-uploads/3f9f55ee-b85d-492a-a6f2-765bab94a721.png" 
+                alt="Mbaru Technologies Logo" 
+                className="h-10 w-10 object-contain"
+              />
+              <h3 className="text-2xl font-bold">Mbaru Technologies</h3>
+            </div>
             <div>
-              <h3 className="text-2xl font-bold mb-2">Mbaru Technologies</h3>
               <p className="text-primary-foreground/80">
                 Your trusted ICT partner in Nairobi, providing innovative digital solutions 
                 for businesses and individuals since 2017.
