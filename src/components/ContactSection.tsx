@@ -72,8 +72,8 @@ export const ContactSection = () => {
                 <div>
                   <h4 className="font-semibold text-foreground mb-1">Phone</h4>
                   <p className="text-muted-foreground">
-                    +254 XXX XXXXXX<br />
-                    +254 XXX XXXXXX
+                    +254 092 093 5895<br />
+                    +254 071 014 7458
                   </p>
                 </div>
               </div>
@@ -85,8 +85,8 @@ export const ContactSection = () => {
                 <div>
                   <h4 className="font-semibold text-foreground mb-1">Email</h4>
                   <p className="text-muted-foreground">
-                    info@mbarutechnologies.co.ke<br />
-                    support@mbarutechnologies.co.ke
+                    info@mtechgroup.co.ke<br />
+                    support@mtechgroup.co.ke
                   </p>
                 </div>
               </div>

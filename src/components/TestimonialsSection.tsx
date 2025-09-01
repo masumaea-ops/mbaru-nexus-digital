@@ -5,7 +5,6 @@ const testimonials = [
   {
     name: "Dr. Sarah Wanjiku",
     title: "Medical Director",
-    company: "Nairobi Medical Center",
     image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=150&q=80",
     rating: 5,
     text: "Mbaru Technologies transformed our healthcare IT infrastructure. Their cloud migration saved us 40% on IT costs while improving data security and accessibility. Outstanding professional service!"
@@ -13,15 +12,13 @@ const testimonials = [
   {
     name: "James Kiprotich",
     title: "IT Manager",
-    company: "ABC Bank Kenya",
     image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&q=80",
     rating: 5,
-    text: "The cybersecurity audit conducted by Mbaru Technologies was comprehensive and professional. They helped us achieve 100% compliance with CBK guidelines. Highly recommended for financial institutions."
+    text: "The cybersecurity audit conducted by Mbaru Technologies was comprehensive and professional. They helped us achieve 100% compliance with industry guidelines. Highly recommended for organizations."
   },
   {
     name: "Mary Achieng",
     title: "Operations Manager",
-    company: "KenTrade Limited",
     image: "https://images.unsplash.com/photo-1494790108755-2616c639749e?w=150&q=80",
     rating: 5,
     text: "Our e-commerce platform built by Mbaru Technologies has revolutionized our business. M-Pesa integration and mobile optimization increased our sales by 300%. Excellent work!"
@@ -29,15 +26,13 @@ const testimonials = [
   {
     name: "Prof. David Mwangi",
     title: "Deputy Vice-Chancellor",
-    company: "University of Nairobi",
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&q=80",
     rating: 5,
-    text: "The ICT training program delivered to our staff was exceptional. 200+ employees gained valuable digital skills. The trainers were knowledgeable and engaging throughout the 8-week program."
+    text: "The ICT training program delivered to our staff was exceptional. 200+ employees gained valuable digital skills. The trainers were knowledgeable and engaging throughout the program."
   },
   {
     name: "Grace Mutua",
-    title: "CEO",
-    company: "Tuskey's Supermarket",
+    title: "Chief Executive Officer",
     image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&q=80",
     rating: 5,
     text: "The custom POS system developed by Mbaru Technologies streamlined our operations across all locations. Real-time inventory tracking and sales analytics have improved our decision-making significantly."
@@ -45,10 +40,9 @@ const testimonials = [
   {
     name: "Michael Njoroge",
     title: "Network Administrator",
-    company: "Safaricom Ltd",
     image: "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?w=150&q=80",
     rating: 5,
-    text: "Mbaru Technologies delivered a robust network infrastructure for our 15 retail outlets. The centralized management and 24/7 monitoring have reduced downtime to nearly zero. Professional team!"
+    text: "Mbaru Technologies delivered a robust network infrastructure for our retail outlets. The centralized management and 24/7 monitoring have reduced downtime to nearly zero. Professional team!"
   }
 ];
 
@@ -92,7 +86,7 @@ export const TestimonialsSection = () => {
                   <div>
                     <h4 className="font-semibold text-foreground">{testimonial.name}</h4>
                     <p className="text-sm text-muted-foreground">
-                      {testimonial.title}, {testimonial.company}
+                      {testimonial.title}
                     </p>
                   </div>
                 </div>
