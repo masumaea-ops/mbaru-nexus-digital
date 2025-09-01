@@ -72,7 +72,7 @@ export const ContactSection = () => {
                 <div>
                   <h4 className="font-semibold text-foreground mb-1">Phone</h4>
                   <p className="text-muted-foreground">
-                    +254 092 093 5895<br />
+                    +254 072 093 5895<br />
                     +254 071 014 7458
                   </p>
                 </div>
