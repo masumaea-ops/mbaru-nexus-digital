@@ -52,15 +52,15 @@ export const Footer = () => {
                 <Phone className="h-5 w-5 text-primary-light" />
                 <span className="text-sm">+254 072 093 5895 / +254 071 014 7458</span>
               </div>
-              <div className="flex items-center space-x-3">
-                <Mail className="h-5 w-5 text-primary-light" />
-                <span className="text-sm">info@mtechgroup.co.ke</span>
-              </div>
+            <div className="flex items-center space-x-3">
+              <Mail className="h-5 w-5 text-primary-light" />
+              <span className="text-sm">info@mtechgroup.com</span>
+            </div>
             </div>
 
             <div className="flex space-x-4">
               <a 
-                href="https://facebook.com/mbarutechnologies" 
+                href="https://www.facebook.com/mbarutechnologies" 
                 className="w-10 h-10 bg-primary-foreground/10 rounded-full flex items-center justify-center hover:bg-primary-light transition-colors duration-300"
                 aria-label="Follow us on Facebook"
               >
