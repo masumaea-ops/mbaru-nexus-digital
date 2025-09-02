@@ -1,4 +1,5 @@
 import { useState } from "react";
+import emailjs from '@emailjs/browser';
 import { MapPin, Phone, Mail, Clock, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -11,18 +12,46 @@ export const ContactSection = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    
+    // EmailJS configuration - Replace with your actual values
+    const serviceId = 'YOUR_SERVICE_ID'; // Get from EmailJS dashboard
+    const templateId = 'YOUR_TEMPLATE_ID'; // Get from EmailJS dashboard  
+    const publicKey = 'YOUR_PUBLIC_KEY'; // Get from EmailJS dashboard
+    
+    const templateParams = {
+      firstName: formData.get('firstName'),
+      lastName: formData.get('lastName'),
+      email: formData.get('email'),
+      phone: formData.get('phone'),
+      company: formData.get('company'),
+      service: formData.get('service'),
+      message: formData.get('message'),
+      to_email: 'info@mtechgroup.co.ke'
+    };
+    
+    try {
+      await emailjs.send(serviceId, templateId, templateParams, publicKey);
       toast({
         title: "Message Sent Successfully!",
         description: "We'll get back to you within 24 hours.",
       });
-    }, 2000);
+      form.reset();
+    } catch (error) {
+      toast({
+        title: "Error Sending Message",
+        description: "Please try again or contact us directly.",
+        variant: "destructive"
+      });
+      console.error('EmailJS Error:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -138,33 +167,34 @@ export const ContactSection = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="firstName">First Name *</Label>
-                    <Input id="firstName" required placeholder="Your first name" />
+                    <Input id="firstName" name="firstName" required placeholder="Your first name" />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="lastName">Last Name *</Label>
-                    <Input id="lastName" required placeholder="Your last name" />
+                    <Input id="lastName" name="lastName" required placeholder="Your last name" />
                   </div>
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="email">Email Address *</Label>
-                  <Input id="email" type="email" required placeholder="your.email@example.com" />
+                  <Input id="email" name="email" type="email" required placeholder="your.email@example.com" />
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="phone">Phone Number</Label>
-                  <Input id="phone" type="tel" placeholder="+254 XXX XXXXXX" />
+                  <Input id="phone" name="phone" type="tel" placeholder="+254 XXX XXXXXX" />
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="company">Company/Organization</Label>
-                  <Input id="company" placeholder="Your company name" />
+                  <Input id="company" name="company" placeholder="Your company name" />
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="service">Service of Interest</Label>
                   <select 
                     id="service" 
+                    name="service"
                     className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                   >
                     <option value="">Select a service</option>
@@ -184,6 +214,7 @@ export const ContactSection = () => {
                   <Label htmlFor="message">Message *</Label>
                   <Textarea 
                     id="message" 
+                    name="message"
                     required 
                     placeholder="Tell us about your ICT needs and how we can help..."
                     className="min-h-[120px]"

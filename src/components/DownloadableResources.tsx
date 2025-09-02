@@ -35,13 +35,27 @@ const resources = [
 
 export const DownloadableResources = () => {
   const handleDownload = (title: string) => {
-    // Simulate download - in real implementation, this would download actual files
+    // Real file download - files should be uploaded to /public/downloads/
+    const filename = title.toLowerCase().replace(/\s+/g, '-') + '.pdf';
     const link = document.createElement('a');
-    link.href = '#';
-    link.download = `${title.toLowerCase().replace(/\s+/g, '-')}.pdf`;
+    link.href = `/downloads/${filename}`;
+    link.download = filename;
+    link.target = '_blank';
     
-    // Show success message instead of actual download for demo
-    alert(`Downloading: ${title}`);
+    // Check if file exists before attempting download
+    fetch(link.href, { method: 'HEAD' })
+      .then(response => {
+        if (response.ok) {
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        } else {
+          alert(`File not found: ${filename}. Please upload the PDF files to /public/downloads/ folder.`);
+        }
+      })
+      .catch(() => {
+        alert(`Error accessing file: ${filename}. Please ensure the file exists in /public/downloads/`);
+      });
   };
 
   return (
